@@ -1,0 +1,53 @@
+﻿<Page
+    x:Class="ResponsiveDesign.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ResponsiveDesign"
+    xmlns:converters="using:ResponsiveDesign.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition />
+        </TransitionCollection>
+    </Page.Transitions>
+    <Page.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Page.Resources>
+    
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <RelativePanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource MyChromeBackgroundBrush}">
+            <Button 
+                RelativePanel.AlignVerticalCenterWithPanel="True"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.LeftOf="title"
+                Visibility="{Binding ElementName=navFrame,Path=CanGoBack,Converter={StaticResource BooleanToVisibilityConverter}}"
+                Margin="0,0,20,0" 
+                Style="{StaticResource NavigationBackButtonNormalStyle}"
+                Foreground="{StaticResource MyAccentBrush}"
+                Click="backButton_Click"
+                x:Name="backButton" />
+            <TextBlock 
+                FontFamily="Segoe UI Light"
+                FontWeight="SemiLight"
+                x:Name="title"
+                RelativePanel.AlignVerticalCenterWithPanel="True"
+                RelativePanel.AlignHorizontalCenterWithPanel="True"
+                Text="Responsive Layout Recipes"
+                Style="{StaticResource TitleTextBlockStyle}" />
+            <ToggleButton x:Name="resizeButton" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" Background="{StaticResource MyChromeBackgroundBrush}" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
+                <ToggleButton.Content>
+                    <FontIcon FontSize="20" Glyph="&#xE1D8;" />
+                </ToggleButton.Content>
+            </ToggleButton>
+        </RelativePanel>
+        <Grid Grid.Row="1">
+            <Frame x:Name="navFrame" />
+        </Grid>
+    </Grid>
+</Page>

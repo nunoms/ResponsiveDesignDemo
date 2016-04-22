@@ -1,0 +1,137 @@
+﻿<UserControl
+    x:Class="ResponsiveDesign.UserControls.SplitViewContent"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ResponsiveDesign.UserControls"
+    xmlns:myControls="using:ResponsiveDesign.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <RelativePanel x:Name="header" Background="#FFF2F2F2">
+
+            <ToggleButton 
+                        x:Name="toggleButton" 
+                        IsChecked="{Binding ElementName=splitView, Path=IsPaneOpen,Mode=TwoWay}"
+                        Style="{StaticResource HamburgerButtonStyle}" 
+                        Height="48" 
+                        Width="48">
+                <ToggleButton.Content>
+                    <FontIcon Glyph="&#xE700;" FontSize="20" />
+                </ToggleButton.Content>
+            </ToggleButton>
+
+            <TextBlock x:Name="pageTitle" Text="CATALOG" Padding="0" FontFamily="Segoe UI Light" FontWeight="SemiBold" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.RightOf="toggleButton" Margin="20,0,0,0" />
+
+            <RelativePanel Margin="0,0,8,0" x:Name="searchContainer" Height="48" RelativePanel.AlignRightWithPanel="True" Background="Transparent">
+
+                <AutoSuggestBox x:Name="searchBox"
+                     RelativePanel.AlignVerticalCenterWithPanel="True"
+                     Grid.Column="0"
+                     MinWidth="200"
+                     PlaceholderText="Picture title, actor, etc."
+                     Margin="0" />
+
+                <Button Margin="4,0,0,0" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.RightOf="searchBox" x:Name="searchIcon" Background="Transparent">
+                    <Button.Content>
+                        <FontIcon 
+                            Foreground="{StaticResource MyCaptionForegroundBrush}"
+                            Glyph="&#xE094;"
+                            FontSize="22"
+                            MaxHeight="48"/>
+                    </Button.Content>
+                </Button>
+                <Button Margin="4,0,0,0" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.RightOf="searchIcon" x:Name="activityIcon" Visibility="Collapsed" Background="Transparent">
+                    <Button.Content>
+                        <FontIcon 
+                            Foreground="{StaticResource MyCaptionForegroundBrush}"
+                            Glyph="&#xE939;"
+                            FontSize="20"
+                            MaxHeight="48"/>
+                    </Button.Content>
+                </Button>
+            </RelativePanel>
+        </RelativePanel>
+
+        <SplitView Grid.Row="1" DisplayMode="CompactInline" IsPaneOpen="True" x:Name="splitView">
+
+            <SplitView.Pane>
+                <myControls:SplitViewNavigationList DataContext="{x:Bind SplitViewNavigationViewModel}" x:Name="navigationContainer" NavigationItemClicked="navigationContainer_NavigationItemClicked" />
+            </SplitView.Pane>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <ContentPresenter HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="myContent">
+                    <ContentPresenter.ContentTransitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition />
+                        </TransitionCollection>
+                    </ContentPresenter.ContentTransitions>
+                </ContentPresenter>
+
+                <Grid Padding="18" Visibility="Collapsed" Width="254" x:Name="social" Grid.Column="1" Background="{StaticResource MyPanelBackgroundBrush}">
+                    <myControls:SocialContent />
+                </Grid>
+
+            </Grid>
+
+        </SplitView>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="screenStates">
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="searchBox.Visibility" Value="Collapsed" />
+                        <Setter Target="activityIcon.Visibility" Value="Visible" />
+                        <Setter Target="splitView.DisplayMode" Value="Overlay" />
+                        <Setter Target="splitView.IsPaneOpen" Value="False" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Medium">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="450" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="activityIcon.Visibility" Value="Visible" />
+                        <Setter Target="splitView.DisplayMode" Value="CompactOverlay" />
+                        <Setter Target="splitView.IsPaneOpen" Value="False" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="social.Visibility" Value="Visible" />
+                        <Setter Target="splitView.DisplayMode" Value="CompactOverlay" />
+                        <Setter Target="splitView.IsPaneOpen" Value="False" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="ExtraWide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1200" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="splitView.DisplayMode" Value="CompactInline" />
+                        <Setter Target="splitView.IsPaneOpen" Value="True" />
+                        <Setter Target="social.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+    
+</UserControl>

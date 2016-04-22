@@ -1,0 +1,48 @@
+﻿<UserControl
+    x:Class="ResponsiveDesign.UserControls.TopPictures"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ResponsiveDesign.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:ResponsiveDesign.Converters"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <converters:StringUppercaseConverter x:Key="StringUppercaseConverter" />
+        <DataTemplate x:Key="topPictureTemplate">
+            <Grid  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Image Source="{Binding ImageUrl}" HorizontalAlignment="Center" Stretch="UniformToFill" />
+                <Border Padding="10" Margin="10,0,20,10" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                    <Border.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.6" />
+                    </Border.Background>
+                    <TextBlock Text="{Binding Title,Converter={StaticResource StringUppercaseConverter}}" FontFamily="Segue UI" Foreground="White" Typography.Capitals="Unicase" FontWeight="ExtraBold" FontSize="14" TextTrimming="CharacterEllipsis" />
+                </Border>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition  />
+                <ColumnDefinition />
+                <ColumnDefinition  />
+            </Grid.ColumnDefinitions>
+            <ContentControl ContentTemplate="{StaticResource topPictureTemplate}" DataContext="{Binding TopRatedPictures[0]}" Grid.ColumnSpan="4" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" HorizontalAlignment="Center" />
+            <ContentControl ContentTemplate="{StaticResource topPictureTemplate}" DataContext="{Binding TopRatedPictures[1]}" Grid.ColumnSpan="2" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" />
+            <ContentControl ContentTemplate="{StaticResource topPictureTemplate}" DataContext="{Binding TopRatedPictures[2]}" Grid.ColumnSpan="2" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Grid.Row="2" HorizontalAlignment="Center" />
+            <ContentControl ContentTemplate="{StaticResource topPictureTemplate}" DataContext="{Binding TopRatedPictures[3]}" Grid.ColumnSpan="2" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Grid.Row="1" HorizontalAlignment="Center" />
+            <ContentControl ContentTemplate="{StaticResource topPictureTemplate}" DataContext="{Binding TopRatedPictures[4]}" Grid.ColumnSpan="2" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" />
+        </Grid>
+
+    </ScrollViewer>
+</UserControl>

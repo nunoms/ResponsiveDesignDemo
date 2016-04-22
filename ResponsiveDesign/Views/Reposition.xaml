@@ -1,0 +1,101 @@
+﻿<Page
+    x:Class="ResponsiveDesign.Views.Reposition"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ResponsiveDesign.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+       
+        <ScrollViewer>
+            <RelativePanel HorizontalAlignment="Center" Margin="0,48,0,0" x:Name="content">   
+              
+                <RelativePanel x:Name="highlight" MaxWidth="610" Padding="10" RelativePanel.AlignLeftWithPanel="True">
+                    <TextBlock RelativePanel.AlignTopWithPanel="True" Margin="0,0,0,12" TextTrimming="CharacterEllipsis" Style="{StaticResource TitleTextBlockStyle}" Text="Picture of the day" x:Name="sectionTitle"/>
+                    <Image x:Name="image" Stretch="Uniform" Source="/Images/nature/lion.jpg" RelativePanel.Below="sectionTitle" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"  />
+                    <TextBlock Margin="0,12,0,0" x:Name="title" Style="{StaticResource TitleTextBlockStyle}" Text="Majestic Lion" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Below="image" />
+                    <TextBlock x:Name="subtitle" FontSize="14" Foreground="{StaticResource MyCaptionForegroundBrush}" Style="{StaticResource SubtitleTextBlockStyle}" Text="NATURE" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Below="title" />
+                    <StackPanel Margin="0,8,0,0" RelativePanel.Below="subtitle" RelativePanel.AlignLeftWithPanel="True">
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" TextWrapping="WrapWholeWords">
+                            <Run Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam varius finibus nisi et laoreet. Nullam et semper ipsum. Donec suscipit sem sit amet ligula maximus condimentum." />
+                            <LineBreak />
+                            <LineBreak />
+                            <Run Text="Author: " FontWeight="SemiBold" />
+                            <Run Text="Author Name" />
+                            <LineBreak />
+                            <Run Text="Tags: " FontWeight="SemiBold" />
+                            <Run Text="Nature, Animal, Lion" />
+                            <LineBreak />
+                            <Run Text="Rating: " FontWeight="SemiBold" />
+                            <Run Text="4.8 out of 5" />
+                        </TextBlock>
+                    </StackPanel>
+                </RelativePanel>
+      
+                <RelativePanel x:Name="PictureList" RelativePanel.AlignRightWithPanel="True" Padding="10" >
+                    <TextBlock RelativePanel.AlignTopWithPanel="True" Margin="0,0,0,12" TextTrimming="CharacterEllipsis" Style="{StaticResource TitleTextBlockStyle}" Text="Popular Now" x:Name="sectionName"/>
+                    <GridView RelativePanel.Below="sectionName" RelativePanel.AlignHorizontalCenterWithPanel="True" ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" Padding="0" ItemsSource="{Binding TopRatedPictures}" ItemTemplate="{StaticResource PictureSmallTemplate}">
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid MaximumRowsOrColumns="4" Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                        <GridView.ItemContainerStyle>
+                            <Style TargetType="GridViewItem">
+                                <Setter Property="MaxWidth" Value="140" />
+                                <Setter Property="Padding" Value="0" />
+                                <Setter Property="Margin" Value="0,0,10,10" />
+                            </Style>
+                        </GridView.ItemContainerStyle>
+                    </GridView>
+                </RelativePanel>
+            </RelativePanel>
+        </ScrollViewer>
+        
+        <Grid Background="{StaticResource MyChromeBackgroundBrush}" x:Name="myCommandBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <CommandBar Background="Transparent" HorizontalAlignment="Right">
+                <CommandBar.PrimaryCommands>
+                    <AppBarButton Icon="Add" Label="Add to playlist" />
+                    <AppBarButton Icon="Favorite" Label="Add to favorites" />
+                    <AppBarButton Icon="Audio" Label="Play" />
+                    <AppBarButton Icon="Sync" Label="Add to offline" />
+                </CommandBar.PrimaryCommands>
+            </CommandBar>
+            </Grid>
+      
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="screenStates">
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="myCommandBar.VerticalAlignment" Value="Bottom" />
+                         <Setter Target="content.Margin" Value="0" />
+                        <Setter Target="PictureList.(RelativePanel.Below)" Value="highlight" />
+                        <Setter Target="PictureList.(RelativePanel.AlignLeftWithPanel)" Value="True" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Normal">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="500" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="PictureList.(RelativePanel.AlignLeftWithPanel)" Value="True" />
+                        <Setter Target="PictureList.(RelativePanel.Below)" Value="highlight" />
+                     </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="940" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="PictureList.(RelativePanel.RightOf)" Value="highlight" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>

@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="ResponsiveDesign.HelperViews.DetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ResponsiveDesign"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="PageRoot"
+    NavigationCacheMode="Enabled"
+    Loaded="PageRoot_Loaded"
+    Unloaded="PageRoot_Unloaded"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition />
+        </TransitionCollection>
+    </Page.Transitions>
+    
+    <!-- Don't realize our content by default. See PageRoot_Loaded. -->
+    <Grid x:Name="RootPanel" x:DeferLoadStrategy="Lazy">
+        <ScrollViewer>
+            <RelativePanel Margin="20,0,20,0">
+                <Image RelativePanel.AlignTopWithPanel="True" VerticalAlignment="Top" x:Name="image" Source="{Binding ImageUrl}" />
+                <TextBlock x:Name="title" RelativePanel.Below="image" Margin="0,8" Style="{ThemeResource TitleTextBlockStyle}"
+                           HorizontalAlignment="Left" Text="{Binding Title}"/>
+
+                <TextBlock x:Name="subtitle" RelativePanel.Below="title" RelativePanel.AlignLeftWith="title" Margin="0,4,0,12" HorizontalAlignment="Left" MaxWidth="560"
+                           Foreground="{StaticResource MyCaptionForegroundBrush}" Style="{ThemeResource BodyTextBlockStyle}" Text="{Binding Subtitle}" />
+
+                <TextBlock x:Name="note" RelativePanel.AlignTopWith="review" RelativePanel.AlignRightWithPanel="True"
+                           FontWeight="SemiBold" TextWrapping="Wrap" Foreground="Red" Style="{ThemeResource BodyTextBlockStyle}" Text="DETAILS PAGE" />
+
+                <TextBlock x:Name="review" FontWeight="SemiBold" RelativePanel.Below="subtitle" RelativePanel.AlignLeftWith="title" Margin="0,0,10,0" HorizontalAlignment="Left"
+                           Style="{ThemeResource BodyTextBlockStyle}" Text="REVIEW" TextWrapping="Wrap" MaxWidth="100"/>
+
+                <TextBlock RelativePanel.Below="review" HorizontalAlignment="Stretch" TextAlignment="Left" TextWrapping="WrapWholeWords" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignLeftWith="title" RelativePanel.AlignRightWithPanel="True" Margin="0,0,0,0"
+                           FontSize="12" Style="{ThemeResource BodyTextBlockStyle}" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam varius finibus nisi et laoreet. Nullam et semper ipsum. Donec suscipit sem sit amet ligula maximus condimentum. Integer velit risus, rutrum id elit a, posuere vulputate libero. Phasellus lectus metus, rutrum quis elementum et, blandit ac nulla. Nunc gravida vel nisl sit amet lacinia. Nullam at consectetur urna. Donec egestas nec lacus at sagittis. Nullam nec sem fermentum, porttitor lectus eu, tempus sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed tempor feugiat mi. Sed convallis pulvinar ex, ac vehicula lorem facilisis ut. Quisque eleifend dolor euismod tincidunt consequat. Quisque porta sapien non est maximus condimentum. Quisque ornare magna at accumsan maximus. Morbi lobortis, magna sit amet euismod euismod, tortor sapien faucibus elit, sit amet semper magna dolor ut eros. Aenean nec dolor at lorem accumsan pulvinar. Proin consequat, lorem quis porta blandit, libero orci viverra lectus, non vehicula libero augue a felis. Ut pharetra, erat nec ultrices facilisis, diam turpis luctus ante, tincidunt lobortis leo elit vitae dolor. Maecenas in scelerisque felis, eget lobortis nisi. Praesent elementum dui tempus auctor cursus. Nunc ac velit quis quam porta vehicula. Phasellus ac varius mauris. Duis malesuada ornare dictum. Proin eu metus quis dui convallis feugiat nec vel magna. Donec commodo tellus quis nulla interdum, vel maximus nisi accumsan. Etiam porttitor nunc ultrices euismod vehicula. Donec eget consectetur quam, sit amet auctor ante. Etiam sit amet ipsum at erat lobortis pellentesque eu quis felis. Morbi sollicitudin ligula augue, id sagittis nisl ullamcorper ullamcorper. Pellentesque fringilla eleifend lorem non volutpat. Vestibulum eu metus eu urna pretium pellentesque a eu neque. Nullam ac lacus blandit, gravida justo at, volutpat justo. Nunc vitae tristique massa. Cras placerat egestas ex id cursus. Mauris ut turpis neque. Fusce dapibus fermentum odio non suscipit. Donec nec odio non nibh hendrerit eleifend. Mauris nulla enim, pretium in sapien eu, dapibus feugiat mauris. Nam id maximus neque. Integer pharetra risus eu augue rutrum, eget pretium nisi lobortis. Maecenas luctus mauris malesuada ornare gravida. Etiam interdum magna sed orci bibendum sodales. Duis in elit ipsum. Integer porta massa non arcu mattis eleifend. Duis mattis mollis metus, id facilisis libero faucibus in. Integer augue orci, suscipit vitae ultricies a, viverra maximus purus. Praesent ullamcorper libero nisi, sed placerat neque interdum vitae. Nam mollis ultricies velit, tincidunt egestas odio sodales non. Curabitur accumsan risus ut tellus ultricies mollis. " />
+
+            </RelativePanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

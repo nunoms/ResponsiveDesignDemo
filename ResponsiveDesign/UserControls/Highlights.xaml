@@ -1,0 +1,69 @@
+﻿<UserControl
+    x:Class="ResponsiveDesign.UserControls.Highlights"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <RelativePanel>
+        <GridView x:Name="gridView" Margin="0" 
+                  Padding="20"
+                  RequestedTheme="Dark"
+                  VerticalContentAlignment="Center"
+                  Background="{StaticResource MyPanelBackgroundBrush}" 
+                  RelativePanel.AlignLeftWithPanel="True" 
+                  RelativePanel.AlignRightWithPanel="True"
+                  RelativePanel.AlignTopWithPanel="True"
+                  ItemsSource="{Binding TopRatedPictures}"
+                  ScrollViewer.VerticalScrollMode="Disabled"
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.IsHorizontalRailEnabled="True" 
+                  ItemTemplate="{StaticResource highlightsSmallTemplate}">
+            <GridView.ItemContainerStyle>
+                <Style TargetType="GridViewItem">
+                    <Setter Property="MaxWidth" Value="380" />
+                    <Setter Property="MaxHeight" Value="220" />
+                    <Setter Property="Margin" Value="0,0,20,0" />
+                </Style>
+            </GridView.ItemContainerStyle>
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Vertical" MaximumRowsOrColumns="1" />
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+        </GridView>
+        <FlipView x:Name="flipView" Margin="0" 
+                  Padding="0"
+                  ScrollViewer.IsHorizontalRailEnabled="True"
+                  VerticalContentAlignment="Center"
+                  Visibility="Collapsed"
+                  RequestedTheme="Dark"
+                  Background="{StaticResource MyHighlightsBackgroundBrush}" 
+                  RelativePanel.AlignLeftWithPanel="True" 
+                  RelativePanel.AlignRightWithPanel="True"
+                  RelativePanel.AlignTopWithPanel="True"
+                  ItemsSource="{Binding TopRatedPictures}"
+                   ItemTemplate="{StaticResource highlightsTemplate}">
+        </FlipView>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="screenStates">
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="flipView.Visibility" Value="Visible" />
+                        <Setter Target="gridView.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="520" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </RelativePanel>
+</UserControl>
