@@ -1,5 +1,7 @@
 # UWP Responsive Design Sample
 
+Full documentation here: http://codingforlife.azurewebsites.net/2016/04/27/responsive-design-on-uwp/ 
+
 The topic of adaptive UI is cornerstone on Windows 10 UWP apps. One may argue that this is one area where Microsoft actually increased complexity on Win 10, as you now need to have one app that runs across all devices, meaning your UI needs to gracefully adapt to whatever form factor is running on.
 
 The good news is that most of the challenges can be met by creating a responsive UI that knows how to adapt itself based on the window size, rather than trying to target specific form factors or physical screen sizes. You can actually tailor your experience based on the later, however, this should only be done if you really need to.
@@ -20,4 +22,4 @@ This sample goes through these techniques and shows how they are implemented, an
 ### Next Steps
 
 1. Making sure the sample works on Xbox correctly as I expect some handling of the controller needs to be done.
-2. Detailed project documentation in a blogpost, soon to be linked here
+
