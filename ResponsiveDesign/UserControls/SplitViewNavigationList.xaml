@@ -35,7 +35,7 @@
                     </Grid.ColumnDefinitions>
                     <Ellipse VerticalAlignment="Center" x:Name="avatar"  Height="25" Width="25">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="/Images/social/nunosilva.jpg" />
+                            <ImageBrush ImageSource="/Images/nunosilva.jpg" />
                         </Ellipse.Fill>
                     </Ellipse>
                     <TextBlock VerticalAlignment="Center" Text="Your account" Grid.Column="1" />
