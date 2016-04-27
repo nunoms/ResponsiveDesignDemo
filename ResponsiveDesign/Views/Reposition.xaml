@@ -64,7 +64,7 @@
                 </CommandBar.PrimaryCommands>
             </CommandBar>
             </Grid>
-      
+
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="screenStates">
                 <VisualState x:Name="Narrow">

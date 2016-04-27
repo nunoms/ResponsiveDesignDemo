@@ -38,7 +38,7 @@
                 x:Name="title"
                 RelativePanel.AlignVerticalCenterWithPanel="True"
                 RelativePanel.AlignHorizontalCenterWithPanel="True"
-                Text="Responsive Layout Recipes"
+                Text="Responsive Design"
                 Style="{StaticResource TitleTextBlockStyle}" />
             <ToggleButton x:Name="resizeButton" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" Background="{StaticResource MyChromeBackgroundBrush}" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
                 <ToggleButton.Content>

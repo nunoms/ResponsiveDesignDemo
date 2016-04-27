@@ -25,7 +25,7 @@
         <DataTemplate x:Key="DetailContentTemplate" x:DataType="viewmodels:Picture">
             <ScrollViewer>
             <RelativePanel Margin="20,0,20,0">
-                <Image RelativePanel.AlignTopWithPanel="True" VerticalAlignment="Top" x:Name="image" Source="{x:Bind ImageUrl}" />
+                <Image RelativePanel.AlignTopWithPanel="True" MaxWidth="1000" VerticalAlignment="Top" x:Name="image" Source="{x:Bind ImageUrl}" />
                 <TextBlock x:Name="title" RelativePanel.Below="image" Margin="0,8" Style="{ThemeResource TitleTextBlockStyle}"
                            HorizontalAlignment="Left" Text="{x:Bind Title}"/>
 

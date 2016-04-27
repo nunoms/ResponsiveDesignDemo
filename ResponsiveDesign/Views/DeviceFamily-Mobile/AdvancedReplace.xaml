@@ -15,7 +15,7 @@
             <PivotItem Header="CATALOG">
                 <myControls:PictureCatalog />
             </PivotItem>
-            <PivotItem Header="TOP PictureS">
+            <PivotItem Header="TOP PICTURES">
                 <myControls:TopPictures />
             </PivotItem>
             <PivotItem Header="SOCIAL">

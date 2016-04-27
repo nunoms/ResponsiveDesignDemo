@@ -56,7 +56,10 @@ namespace ResponsiveDesign
         {
             var nav = e.Parameter as NavigationItem;
             if (nav == null)
+            {
+                title.Text = "Responsive Design";
                 return;
+            }
             title.Text = nav.Label;
         }
 
